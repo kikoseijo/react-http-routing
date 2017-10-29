@@ -12,19 +12,23 @@ class Posts extends Component {
 
     componentDidMount() {
         console.log(this.props);
-        axios.get('/posts')
-            .then(response => {
-                const posts = response.data.slice(0,4);
-                const updatedPosts = posts.map( post => {
-                    return {
-                        ...post,
-                        author: 'Max'
-                    }
+        if (this.state.posts.length === 0) {
+            axios.get('/posts')
+                .then(response => {
+                    console.log('axios getPosts()');
+                    const posts = response.data.slice(0,4);
+                    const updatedPosts = posts.map( post => {
+                        return {
+                            ...post,
+                            author: 'Max'
+                        }
+                    });
+                    this.setState({posts:updatedPosts});
+                }).catch( error => {
+                    console.log(error);
                 });
-                this.setState({posts:updatedPosts});
-            }).catch( error => {
-                console.log(error);
-            });
+        }
+
     }
 
     postSelectedHandler = (id) => {

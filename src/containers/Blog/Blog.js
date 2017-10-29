@@ -17,10 +17,10 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><a href="/">Home</a></li>
+                            <li><a href="/">Posts</a></li>
                             <li><a href="/new-posts">New posts</a></li>
                             &nbsp;|&nbsp;
-                            <li><NavLink to="/" exact>Home</NavLink></li>
+                            <li><NavLink to="/" exact>Posts</NavLink></li>
                             <li><NavLink to={{
                                 pathname: '/new-posts',
                                 hash: '#submit',
