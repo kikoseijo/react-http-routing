@@ -14,7 +14,7 @@ class Posts extends Component {
         console.log(this.props);
         axios.get('/posts')
             .then(response => {
-                const posts = response.data.slice(0,6);
+                const posts = response.data.slice(0,4);
                 const updatedPosts = posts.map( post => {
                     return {
                         ...post,
@@ -28,7 +28,7 @@ class Posts extends Component {
     }
 
     postSelectedHandler = (id) => {
-        this.setState({selectedPostId: id});
+        this.props.history.push('/post/' + id);
     }
 
     render() {
@@ -36,13 +36,12 @@ class Posts extends Component {
         if (!this.state.error) {
             posts = this.state.posts.map( post => {
                 return (
-                    <Link to={'/' + post.id} key={post.id}>
-                        <Post
-
+                    // <Link to={'/posts/' + post.id} key={post.id}>
+                        <Post  key={post.id}
                             title={post.title}
                             author={post.author}
-                            click={() => this.postSelectedHandler(post.id)}/>
-                    </Link>
+                            click={ () => this.postSelectedHandler(post.id) }/>
+                    // </Link>
                 );
             });
         }
