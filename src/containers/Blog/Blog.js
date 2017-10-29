@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 
 import './Blog.css';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
-import FullPost from './FullPost/FullPost';
+import Post from './FullPost/FullPost';
 
 class Blog extends Component {
 
@@ -20,18 +20,18 @@ class Blog extends Component {
                             <li><a href="/">Home</a></li>
                             <li><a href="/new-posts">New posts</a></li>
                             &nbsp;|&nbsp;
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to={{
-                                pathname: 'new-posts',
+                            <li><NavLink to="/" exact>Home</NavLink></li>
+                            <li><NavLink to={{
+                                pathname: '/new-posts',
                                 hash: '#submit',
                                 search: '?quick-submit=true'
-                            }}>New posts</Link></li>
+                            }}>New posts</NavLink></li>
                         </ul>
                     </nav>
                 </header>
                 <Route path="/" exact component={Posts} />
-                <Route path="/new-posts" exact component={NewPost} />
-                {/* <Route path="/post" exact component={FullPost} /> */}
+                <Route path="/new-posts" component={NewPost} />
+                <Route path="/:id" exact component={Post} />
 
 
                 {/* <FullPost id={this.state.selectedPostId}/>
